@@ -76,3 +76,6 @@ Nest is [MIT licensed](LICENSE).
 # Back-end-EngenhariaRequisitos
 Projeto Final da disciplina de Engenharia de Requisitos
 >>>>>>> 546e55d266d55f147cef74121aba29205564d306
+
+
+Swagger: http://localhost:3000/api/#/
