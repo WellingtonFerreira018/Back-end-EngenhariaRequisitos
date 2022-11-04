@@ -15,7 +15,7 @@ import { UsuarioModule } from './routes/usuario/usuario.module';
       host: 'localhost',
       port: 3306,
       username: 'root',
-      password: '981589517',
+      password: 'sua senha doidao',
       database: 'med_cover',
       entities:[join(__dirname, '**', '*.entity.{ts,js}')],
       synchronize: true,
