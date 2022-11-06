@@ -14,7 +14,7 @@ export class usuarioDto{
     
     @ApiProperty({
         description: 'CPF',
-        example: '47446183837',
+        example: '12312312399',
     })
     //@IsString()
     //@IsNotEmpty()
