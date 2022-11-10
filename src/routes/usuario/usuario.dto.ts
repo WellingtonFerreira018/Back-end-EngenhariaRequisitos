@@ -16,8 +16,8 @@ export class usuarioDto{
         description: 'CPF',
         example: '12312312399',
     })
-    //@IsString()
-    //@IsNotEmpty()
+    @IsString()
+    @IsNotEmpty()
     cpf: string;
 
     @ApiProperty({

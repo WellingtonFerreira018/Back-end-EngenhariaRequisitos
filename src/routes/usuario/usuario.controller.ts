@@ -38,7 +38,17 @@ export class UsuarioController {
 
         await this.usuarioService.validaCpf(dto.cpf);
 
-        return this.usuarioService.create(dto);
+        try{
+            const cr =  await this.usuarioService.create(dto);
+            return cr;
+        }catch(e){
+
+            if(e.sqlMessage == "Cannot add or update a child row: a foreign key constraint fails (`med_cover`.`usuario`, CONSTRAINT `FK_6f962678dc18e5ec715e370e95e` FOREIGN KEY (`enderecoId`) REFERENCES `endereco` (`id`))")
+            {
+                throw new HttpException('Endereço não encontrado', HttpStatus.NOT_FOUND);
+            }
+        }
+        
     }
 
     @ApiOperation({

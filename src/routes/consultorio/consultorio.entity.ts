@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToOne } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToOne, ManyToOne } from 'typeorm';
 import { Endereco } from '../endereco/endereco.entity';
 
 @Entity()
@@ -6,7 +6,7 @@ export class Consultorio {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @OneToOne(() => Endereco)
+    @ManyToOne(() => Endereco)
     endereco: number;
 
     @Column({ name: 'enderecoId' })
