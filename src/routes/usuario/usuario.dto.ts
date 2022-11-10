@@ -4,7 +4,7 @@ import { IsNotEmpty, IsNumber, IsNumberString, IsPositive, IsString } from 'clas
 export class usuarioDto{
 
     @ApiProperty({
-        description: 'ID da do endereço a ser utilizada pelo usuario a ser criado',
+        description: 'ID do endereço a ser utilizada pelo usuario a ser criado',
         example: '1',
     })
     @IsNotEmpty()
@@ -14,7 +14,7 @@ export class usuarioDto{
     
     @ApiProperty({
         description: 'CPF',
-        example: '47446183837',
+        example: '12312312399',
     })
     //@IsString()
     //@IsNotEmpty()

@@ -1,55 +1,45 @@
-/*import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
+import { medicoDto } from './medico.dto';
+import { Medico } from './medico.entity';
 
 @Injectable()
 export class MedicoService {
 
 
     constructor(
-        @InjectRepository(Usuario)
-        private usuarioRepository: Repository<Usuario>,
+        @InjectRepository(Medico)
+        private medicoRepository: Repository<Medico>,
       ) {}
 
-    findAll():Promise<Usuario[] | undefined>{
-        return this.usuarioRepository.find();
+    findAll():Promise<Medico[] | undefined>{
+        return this.medicoRepository.find();
     }
 
-    find(idUsu: number):Promise<Usuario | undefined>{
+    find(idUsu: number):Promise<Medico | undefined>{
 
-        return this.usuarioRepository.findOne({
+        return this.medicoRepository.findOne({
             where: { id: idUsu }
         })
     }
 
-    async validaCpf(cpfUsu: string){
-        const user = await this.usuarioRepository.findOne({
-            where: { cpf: cpfUsu }
-        })
-
-        if (user){
-            throw new HttpException('O CPF ja esta sendo utilizado em uma conta', HttpStatus.CONFLICT);
-        }
-
-        return;
-
-    }
-
     async validaQuery(id: number){
-        const usuario = await this.find(id);
+        const medico = await this.find(id);
 
-        if(!usuario){
-            throw new HttpException('Usuario não encontrado', HttpStatus.NOT_FOUND);
+        if(!medico){
+            throw new HttpException('medico não encontrado', HttpStatus.NOT_FOUND);
         }
 
-        return usuario;
+        return medico;
     }
 
-    create(dto: usuarioDto):Promise<Usuario | undefined>{
-        return this.usuarioRepository.save(dto);
+    create(dto: medicoDto){
+        return this.medicoRepository.save(dto);
     }
 
     async delete(idUsu: number){
-        return  ((await this.usuarioRepository.delete(idUsu)).affected ?? 0) > 0;
+        return  ((await this.medicoRepository.delete(idUsu)).affected ?? 0) > 0;
     }
 
 }
-*/
