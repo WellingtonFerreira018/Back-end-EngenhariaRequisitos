@@ -19,6 +19,15 @@ export class Consulta {
     consultorio: number;
 
     @Column()
+    usuarioId: number;
+
+    @Column()
+    medicoId: number;
+
+    @Column()
+    consultorioId: number;
+
+    @Column()
     diagnostico: string;
 
     @Column()

@@ -33,8 +33,16 @@ export class ConsultorioController {
       })
     @Post('')
     async createconsultorio(@Body() dto: consultorioDto){
-
-        return this.consultorioService.create(dto);
+        try{
+            const cr =  await this.consultorioService.create(dto);
+            return cr;
+        }catch(e){
+            
+            if(e.sqlMessage == "Cannot add or update a child row: a foreign key constraint fails (`med_cover`.`consultorio`, CONSTRAINT `FK_e5cbba61b1241bc8203e54032de` FOREIGN KEY (`enderecoId`) REFERENCES `endereco` (`id`))")
+            {
+                throw new HttpException('Endereço não encontrado', HttpStatus.NOT_FOUND);
+            }
+        }
     }
 
     @ApiOperation({
