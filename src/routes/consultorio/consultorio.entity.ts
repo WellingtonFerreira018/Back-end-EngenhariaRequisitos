@@ -9,6 +9,9 @@ export class Consultorio {
     @OneToOne(() => Endereco)
     endereco: number;
 
+    @Column({ name: 'enderecoId' })
+    enderecoId: number;
+
     @Column()
     nome: string;
 
