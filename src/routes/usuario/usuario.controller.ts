@@ -19,7 +19,7 @@ export class UsuarioController {
     }
 
     @ApiOperation({
-        description: 'Endpoint para listar um endereço',
+        description: 'Endpoint para listar um usuario',
       })
     @Get(':id')
     async getOne(@Param('id') params: number){//idDto){

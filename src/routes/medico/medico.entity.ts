@@ -11,6 +11,9 @@ export class Medico {
     @ManyToOne(() => Endereco)
     endereco: number;
 
+    @Column({ name: 'enderecoId' })
+    enderecoId: number;
+
     @Column()
     nome: string;
 
@@ -23,7 +26,8 @@ export class Medico {
     @Column()
     senha: string;
 
-    @Column()
-    especializacao: string;
+    @Column({type: 'json'})
+    //@Column()
+    especializacao: string[];
 
 }
