@@ -1,39 +1,45 @@
 import { ApiHideProperty } from '@nestjs/swagger';
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, CreateDateColumn } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  ManyToOne,
+  CreateDateColumn,
+} from 'typeorm';
 import { Consultorio } from '../consultorio/consultorio.entity';
 import { Medico } from '../medico/medico.entity';
 import { Usuario } from '../usuario/usuario.entity';
 
 @Entity()
 export class Consulta {
-    @PrimaryGeneratedColumn()
-    id: number;
+  @PrimaryGeneratedColumn()
+  id: number;
 
-    @ManyToOne(() => Usuario)
-    usuario: number;
+  @ManyToOne(() => Usuario)
+  usuario: number;
 
-    @ManyToOne(() => Medico)
-    medico: number;
+  @ManyToOne(() => Medico)
+  medico: number;
 
-    @ManyToOne(() => Consultorio)
-    consultorio: number;
+  @ManyToOne(() => Consultorio)
+  consultorio: number;
 
-    @Column()
-    usuarioId: number;
+  @Column()
+  usuarioId: number;
 
-    @Column()
-    medicoId: number;
+  @Column()
+  medicoId: number;
 
-    @Column()
-    consultorioId: number;
+  @Column()
+  consultorioId: number;
 
-    @Column()
-    diagnostico: string;
+  @Column()
+  diagnostico: string;
 
-    @Column()
-    receita: string;
+  @Column()
+  receita: string;
 
-    @ApiHideProperty()
-    @CreateDateColumn({ select: false })
-    date: Date;
+  @ApiHideProperty()
+  @CreateDateColumn({ select: false })
+  date: Date;
 }

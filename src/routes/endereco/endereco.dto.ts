@@ -1,10 +1,10 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNotEmpty, IsNumber, IsNumberString, IsString } from 'class-validator';
+import { IsNumberString, IsString } from 'class-validator';
 
-export class enderecoDto{
+export class enderecoDto {
   @ApiProperty({
-      description: 'Nome da rua',
-      example: 'Rua D',
+    description: 'Nome da rua',
+    example: 'Rua D',
   })
   @IsString()
   nomeRua: string;
@@ -50,7 +50,6 @@ export class enderecoDto{
   })
   @IsString()
   pais: string;
-      
 }
 
 export class idDto {

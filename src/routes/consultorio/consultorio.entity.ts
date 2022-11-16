@@ -1,24 +1,23 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToOne, ManyToOne } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
 import { Endereco } from '../endereco/endereco.entity';
 
 @Entity()
 export class Consultorio {
-    @PrimaryGeneratedColumn()
-    id: number;
+  @PrimaryGeneratedColumn()
+  id: number;
 
-    @ManyToOne(() => Endereco)
-    endereco: number;
+  @ManyToOne(() => Endereco)
+  endereco: number;
 
-    @Column({ name: 'enderecoId' })
-    enderecoId: number;
+  @Column({ name: 'enderecoId' })
+  enderecoId: number;
 
-    @Column()
-    nome: string;
+  @Column()
+  nome: string;
 
-    @Column()
-    email: string;
+  @Column()
+  email: string;
 
-    @Column()
-    telefone:string;
-
+  @Column()
+  telefone: string;
 }

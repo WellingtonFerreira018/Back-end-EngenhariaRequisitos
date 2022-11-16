@@ -1,12 +1,11 @@
 import { Module } from '@nestjs/common';
-import { join } from 'path'
+import { join } from 'path';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConsultaModule } from './routes/consulta/consulta.module';
 import { ConsultorioModule } from './routes/consultorio/consultorio.module';
 import { EnderecoModule } from './routes/endereco/endereco.module';
 import { MedicoModule } from './routes/medico/medico.module';
 import { UsuarioModule } from './routes/usuario/usuario.module';
-
 
 @Module({
   imports: [
@@ -17,7 +16,7 @@ import { UsuarioModule } from './routes/usuario/usuario.module';
       username: 'root',
       password: '0000',
       database: 'med_cover',
-      entities:[join(__dirname, '**', '*.entity.{ts,js}')],
+      entities: [join(__dirname, '**', '*.entity.{ts,js}')],
       synchronize: true,
       autoLoadEntities: true,
     }),

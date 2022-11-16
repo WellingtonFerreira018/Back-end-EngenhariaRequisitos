@@ -6,53 +6,51 @@ import { Usuario } from './usuario.entity';
 
 @Injectable()
 export class UsuarioService {
+  constructor(
+    @InjectRepository(Usuario)
+    private usuarioRepository: Repository<Usuario>,
+  ) {}
 
-    constructor(
-        @InjectRepository(Usuario)
-        private usuarioRepository: Repository<Usuario>,
-      ) {}
+  findAll(): Promise<Usuario[] | undefined> {
+    return this.usuarioRepository.find();
+  }
 
-    findAll():Promise<Usuario[] | undefined>{
-        return this.usuarioRepository.find();
+  find(idUsu: number): Promise<Usuario | undefined> {
+    return this.usuarioRepository.findOne({
+      where: { id: idUsu },
+    });
+  }
+
+  async validaCpf(cpfUsu: string) {
+    const user = await this.usuarioRepository.findOne({
+      where: { cpf: cpfUsu },
+    });
+
+    if (user) {
+      throw new HttpException(
+        'O CPF ja esta sendo utilizado em uma conta',
+        HttpStatus.CONFLICT,
+      );
     }
 
-    find(idUsu: number):Promise<Usuario | undefined>{
+    return;
+  }
 
-        return this.usuarioRepository.findOne({
-            where: { id: idUsu }
-        })
+  async validaQuery(id: number) {
+    const usuario = await this.find(id);
+
+    if (!usuario) {
+      throw new HttpException('Usuario não encontrado', HttpStatus.NOT_FOUND);
     }
 
-    async validaCpf(cpfUsu: string){
-        const user = await this.usuarioRepository.findOne({
-            where: { cpf: cpfUsu }
-        })
+    return usuario;
+  }
 
-        if (user){
-            throw new HttpException('O CPF ja esta sendo utilizado em uma conta', HttpStatus.CONFLICT);
-        }
+  create(dto: usuarioDto): Promise<Usuario | undefined> {
+    return this.usuarioRepository.save(dto);
+  }
 
-        return;
-
-    }
-
-    async validaQuery(id: number){
-        const usuario = await this.find(id);
-
-        if(!usuario){
-            throw new HttpException('Usuario não encontrado', HttpStatus.NOT_FOUND);
-        }
-
-        return usuario;
-    }
-
-    create(dto: usuarioDto):Promise<Usuario | undefined>{
-        return this.usuarioRepository.save(dto);
-    }
-
-    async delete(idUsu: number){
-        return  ((await this.usuarioRepository.delete(idUsu)).affected ?? 0) > 0;
-    }
-
-
+  async delete(idUsu: number) {
+    return ((await this.usuarioRepository.delete(idUsu)).affected ?? 0) > 0;
+  }
 }
