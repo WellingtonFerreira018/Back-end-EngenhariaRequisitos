@@ -11,11 +11,11 @@ import { UsuarioModule } from './routes/usuario/usuario.module';
   imports: [
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: 'localhost',
+      host: '',
       port: 3306,
-      username: 'root',
-      password: '0000',
-      database: 'med_cover',
+      username: '',
+      password: '',
+      database: '',
       entities: [join(__dirname, '**', '*.entity.{ts,js}')],
       synchronize: true,
       autoLoadEntities: true,
