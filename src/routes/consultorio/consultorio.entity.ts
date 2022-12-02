@@ -19,5 +19,8 @@ export class Consultorio {
   email: string;
 
   @Column()
+  senha: string;
+
+  @Column()
   telefone: string;
 }

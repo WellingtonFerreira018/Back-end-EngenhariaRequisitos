@@ -34,6 +34,14 @@ export class consultorioDto {
   email: string;
 
   @ApiProperty({
+    description: 'Senha',
+    example: '12345',
+  })
+  @IsString()
+  @IsNotEmpty()
+  senha: string;
+
+  @ApiProperty({
     description: 'Telefone',
     example: '18998059981',
   })
