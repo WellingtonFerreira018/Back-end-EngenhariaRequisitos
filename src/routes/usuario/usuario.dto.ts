@@ -55,3 +55,21 @@ export class usuarioDto {
   @IsNumberString()
   telefone: string;
 }
+
+export class loginDto{
+
+  @ApiProperty({
+    description: 'Email',
+    example: 'erik@erik.com',
+  })
+  @IsNotEmpty()
+  email: string;
+
+  @ApiProperty({
+    description: 'Senha',
+    example: '12345',
+  })
+  @IsNotEmpty()
+  senha: string;
+
+}

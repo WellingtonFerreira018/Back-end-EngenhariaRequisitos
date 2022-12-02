@@ -10,7 +10,7 @@ import {
   Put,
 } from '@nestjs/common';
 import { ApiTags, ApiOperation } from '@nestjs/swagger';
-import { usuarioDto } from './usuario.dto';
+import { loginDto, usuarioDto } from './usuario.dto';
 import { UsuarioService } from './usuario.service';
 
 @ApiTags('Usuario')
@@ -23,7 +23,9 @@ export class UsuarioController {
   })
   @Get('')
   getAll() {
+
     return this.usuarioService.findAll();
+    
   }
 
   @ApiOperation({
@@ -32,10 +34,28 @@ export class UsuarioController {
   @Get(':id')
   async getOne(@Param('id') params: number) {
     //idDto){
-
     const usuario = await this.usuarioService.validaQuery(params);
 
     return usuario;
+  }
+
+  @ApiOperation({
+    description: 'Endpoint para logar um usuario',
+  })
+  @Post('login')
+  async loginUsuario(@Body() dto: loginDto) {
+    
+    const usuario = await this.usuarioService.login(dto);
+
+    if (usuario == undefined){
+      throw new HttpException(
+        'Email ou senha incorretos',
+        HttpStatus.UNAUTHORIZED,
+      );
+    }
+  
+    return usuario;
+
   }
 
   @ApiOperation({
