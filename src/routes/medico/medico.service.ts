@@ -12,11 +12,14 @@ export class MedicoService {
   ) {}
 
   findAll(): Promise<Medico[] | undefined> {
-    return this.medicoRepository.find();
+    return this.medicoRepository.find({
+      select: ["id","nome","especializacao"]
+    });
   }
 
   find(idUsu: number): Promise<Medico | undefined> {
     return this.medicoRepository.findOne({
+      select: ["id","nome","crm","email","especializacao"],
       where: { id: idUsu },
     });
   }

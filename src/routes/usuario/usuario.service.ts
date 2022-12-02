@@ -1,7 +1,7 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { usuarioDto } from './usuario.dto';
+import { loginDto, usuarioDto } from './usuario.dto';
 import { Usuario } from './usuario.entity';
 
 @Injectable()
@@ -12,11 +12,14 @@ export class UsuarioService {
   ) {}
 
   findAll(): Promise<Usuario[] | undefined> {
-    return this.usuarioRepository.find();
+    return this.usuarioRepository.find({
+      select: ["id","cpf","nome"]
+    });
   }
 
   find(idUsu: number): Promise<Usuario | undefined> {
     return this.usuarioRepository.findOne({
+      select: ["id","cpf","nome","email","telefone"],
       where: { id: idUsu },
     });
   }
@@ -36,7 +39,17 @@ export class UsuarioService {
     return;
   }
 
-  async validaQuery(id: number) {
+  async login( dto: loginDto): Promise<Usuario | undefined>{
+    
+    const user = await this.usuarioRepository.findOne({
+      where: { email: dto.email, senha:dto.senha },
+    });
+
+    return user;
+
+  }
+
+  async validaQuery(id: number): Promise<Usuario | undefined>{
     const usuario = await this.find(id);
 
     if (!usuario) {
