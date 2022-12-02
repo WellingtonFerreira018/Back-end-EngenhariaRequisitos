@@ -12,7 +12,6 @@ export class usuarioDto {
     description: 'ID do endereço a ser utilizada pelo usuario a ser criado',
     example: '1',
   })
-  @IsNotEmpty()
   @IsNumber()
   @IsPositive()
   enderecoId: number;
@@ -22,7 +21,6 @@ export class usuarioDto {
     example: '12312312399',
   })
   @IsString()
-  @IsNotEmpty()
   cpf: string;
 
   @ApiProperty({
