@@ -1,16 +1,16 @@
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
-import { Endereco } from '../endereco/endereco.entity';
+import { Consultorio } from '../consultorio/consultorio.entity';
 
 @Entity()
 export class Medico {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @ManyToOne(() => Endereco)
-  endereco: number;
+  @ManyToOne(() => Consultorio)
+  consultorio: number;
 
-  @Column({ name: 'enderecoId' })
-  enderecoId: number;
+  @Column({ name: 'consultorioId' })
+  consultorioId: number;
 
   @Column()
   nome: string;

@@ -10,13 +10,13 @@ import {
 
 export class medicoDto {
   @ApiProperty({
-    description: 'ID do endereço a ser utilizada pelo medico a ser cadastrado',
+    description: 'ID do consultorio a ser utilizada pelo medico a ser cadastrado',
     example: '1',
   })
   @IsNotEmpty()
   @IsNumber()
   @IsPositive()
-  enderecoId: number;
+  consultorioId: number;
 
   @ApiProperty({
     description: 'Nome',

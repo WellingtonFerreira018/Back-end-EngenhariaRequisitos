@@ -48,12 +48,13 @@ export class MedicoController {
       const cr = await this.medicoService.create(dto);
       return cr;
     } catch (e) {
+
       if (
         e.sqlMessage ==
-        'Cannot add or update a child row: a foreign key constraint fails (`med_cover`.`medico`, CONSTRAINT `FK_56bf0f1922cef2ba7abc5487f1f` FOREIGN KEY (`enderecoId`) REFERENCES `endereco` (`id`))'
+        'Cannot add or update a child row: a foreign key constraint fails (`med_cover`.`medico`, CONSTRAINT `FK_d3af27e17ce803080eb2e8cf6b4` FOREIGN KEY (`consultorioId`) REFERENCES `consultorio` (`id`))'
       ) {
         throw new HttpException(
-          'Endereço não encontrado',
+          'Consultorio não encontrado',
           HttpStatus.NOT_FOUND,
         );
       }
@@ -67,7 +68,7 @@ export class MedicoController {
   async editMedico(@Param('id') params: number, @Body() dto: medicoDto) {
     const medico = await this.medicoService.validaQuery(params);
 
-    medico.enderecoId = dto.enderecoId;
+    medico.consultorioId = dto.consultorioId;
     medico.nome = dto.nome;
     medico.email = dto.email;
     medico.senha = dto.senha;
